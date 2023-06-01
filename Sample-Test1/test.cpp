@@ -37,3 +37,22 @@ TEST_F(AccoutFixture, Withdraw)
 	account.withdraw(600);
 	EXPECT_EQ(account.getBanlance(), 9400);
 }
+
+TEST_F(AccoutFixture, applyIntereset)
+{
+	account.setInterest(5);
+	account.applyInterest();
+	EXPECT_EQ(account.getBanlance(), 10500);
+}
+
+TEST_F(AccoutFixture, extectedBalance)
+{
+	account.setInterest(5);
+	EXPECT_EQ(account.getExpectedBalance(1), 10500);
+	EXPECT_EQ(account.getExpectedBalance(2), 11025);
+	EXPECT_EQ(account.getExpectedBalance(3), 11576);
+	account.setInterest(10);
+	EXPECT_EQ(account.getExpectedBalance(1), 11000);
+	EXPECT_EQ(account.getExpectedBalance(2), 12100);
+	EXPECT_EQ(account.getExpectedBalance(3), 13310);
+}
